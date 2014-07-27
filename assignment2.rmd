@@ -1,0 +1,40 @@
+## To understand Severe Weather Events on Public Health and Economy in the United States
+
+# Synonpsis  
+A study on  weather events on public health and economy based on the storm database collected from the U.S. National Oceanic and Atmospheric Administration's (NOAA)from 1950 - 2011. The study aims at providing useful insights into different events their impact of ecomomy, Fatalities/Injuries 
+caused by each events over a period.
+
+### Basic settings
+```{r}
+setwd("C:/EMC_V/course_era/DataScience_specialization/RR/repdata-data-StormData")
+echo = TRUE  # Always make code visible
+options(scipen = 1)  # Turn off scientific notations for numbers
+library(R.utils)
+library(ggplot2)
+library(plyr)
+require(gridExtra)
+
+stormData <- read.csv("StormData.csv")
+
+dim(stormData)
+head(stormData, n = 2)
+
+##There are 902297 rows and 37 columns in total.
+
+## Fatalities Summary
+
+sum(stormData$FATALITIES)
+summary(stormData$FATALITIES[stormData$FATALITIES!= 0])
+boxplot(stormData$FATALITIES[stormData$FATALITIES != 0], log = "y")
+
+### Property Damage Summary
+
+##```{r property_damage_summary}
+sum(stormData$PROPDMG)
+summary(stormData$PROPDMG[stormData$PROPDMG != 0])
+boxplot(stormData$PROPDMG[stormData$PROPDMG != 0], log = "y")
+```
+## fatalities summary 
+fatalities summary shows that "excessive heat" and "tornado" are main fatalities that caused maximum damage.
+## Conclusion  
+found that "excessive heat"" and "tornado"" are most harmful with respect to population health, while "flood"", "drought"", and  have the greatest economic consequences.
